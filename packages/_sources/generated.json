@@ -1,0 +1,22 @@
+{
+    "pantalaimon": {
+        "cargoLocks": null,
+        "date": "2024-11-01",
+        "extract": null,
+        "name": "pantalaimon",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "matrix-org",
+            "repo": "pantalaimon",
+            "rev": "a15f3e49c3672741f16ded2eccab55297ccd43c4",
+            "sha256": "sha256-wQFK0o8W1K0QaKz3fqPn3YC2Fg6/+gNXh2AMepbhQm8=",
+            "type": "github"
+        },
+        "version": "a15f3e49c3672741f16ded2eccab55297ccd43c4"
+    }
+}
