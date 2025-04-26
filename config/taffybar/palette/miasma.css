@@ -1,0 +1,19 @@
+@define-color asparagus rgba(120, 140, 75, 1);
+@define-color roti rgba(201, 165, 84, 1);
+@define-color straw rgba(215, 196, 131, 1);
+@define-color dingley rgba(120, 130, 75, 1);
+@define-color ash rgba(194, 194, 176, 1);
+
+@define-color raisin-black rgba(26, 27, 38, 1);
+@define-color cod-gray rgba(11, 11, 10, 0.4);
+@define-color cod-gray-acc rgba(11, 11, 10, 0.6);
+@define-color transparent rgba(0, 0, 0, 0.0);
+
+@define-color bar-background @cod-gray-acc;
+@define-color bar-foreground @dingley;
+@define-color button-background @transparent;
+@define-color hl-active-pad-bg @dingley;
+@define-color hl-active-pad-fg @transparent;
+@define-color menu-background @raisin-black;
+@define-color menu-foreground @dingley;
+@define-color widget-background @cod-gray;

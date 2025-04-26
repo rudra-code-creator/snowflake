@@ -1,0 +1,147 @@
+#!/usr/bin/env python3
+
+import argparse
+import re
+import subprocess
+import time
+import os
+
+
+class VolumeControl:
+    ICONS = ["󰖁 ", "󰖀 ", "󰕾 ", " "]
+    STATUS_FILE = "/tmp/volctl-window-status.txt"
+
+    def __init__(self):
+        self.volume_status_cache = self.get_volume_status_all()
+        self.symbol = self.get_icon(self.volume_status_cache["volume"])
+
+    def get_volume_status_all(self):
+        output = (
+            subprocess.run(
+                ["wpctl", "get-volume", "@DEFAULT_AUDIO_SINK@"], stdout=subprocess.PIPE
+            )
+            .stdout.decode()
+            .strip()
+        )
+        volume_level = float(re.sub("[^0-9.]", "", output))
+        is_muted = bool(re.search(r"\bMUTED\b", output))
+        window_muted = self.window_mute_status("read")
+        return {
+            "volume": int(volume_level * 100),
+            "mute": is_muted,
+            "window-mute": window_muted,
+        }
+
+    def window_mute_status(self, action, *args):
+        if not os.path.exists(self.STATUS_FILE):
+            open(self.STATUS_FILE, 'w').close()
+
+        with open(self.STATUS_FILE, "r+" if action == "read" else "w+") as f:
+            if action == "read":
+                return f.read().strip() == "True"
+            else:
+                f.write(str(args[0]))
+
+    def get_icon(self, percentage):
+        if percentage <= 30:
+            return self.ICONS[1]
+        elif 30 < percentage <= 70:
+            return self.ICONS[2]
+        elif percentage > 70:
+            return self.ICONS[3]
+        else:
+            return ""
+
+    def notify(self, icon, message, volume):
+        subprocess.run(
+            [
+                "notify-send",
+                icon + message + volume + "%",
+                "-t",
+                "500",
+                "-h",
+                "string:synchronous:volume",
+                "-h",
+                "int:value:" + volume,
+                "-u",
+                "low",
+            ]
+        )
+
+    def control_volume_level(self, args):
+        if args.command == "toggle-mute":
+            self.wireplumber_cli(["set-mute", "@DEFAULT_AUDIO_SINK@", "toggle"])
+        elif args.command == "toggle-window-mute":
+            pid = subprocess.check_output(["xdotool", "getactivewindow"]).strip()
+            self.wireplumber_cli(["set-mute", "-p", pid, "toggle"])
+            self.window_mute_status("write", not self.get_volume_status("window-mute"))
+        elif args.command in ["increase", "decrease"]:
+            self.wireplumber_cli(
+                [
+                    "set-volume",
+                    "@DEFAULT_AUDIO_SINK@",
+                    f"{args.level}%" + ("+" if args.command == "increase" else "-"),
+                ]
+            )
+
+        self.volume_status_cache = self.get_volume_status_all()
+        self.symbol = self.get_icon(self.volume_status_cache["volume"])
+
+        if args.command == "toggle-mute" and self.get_volume_status("mute"):
+            self.notify(self.ICONS[0], "Muted Volume: ", "0")
+        elif args.command == "toggle-window-mute" and self.get_volume_status(
+            "window-mute"
+        ):
+            self.notify(self.ICONS[0], "Muted Window: ", "0")
+        else:
+            self.notify(
+                self.symbol, "Volume Level: ", str(self.get_volume_status("volume"))
+            )
+
+    def wireplumber_cli(self, args):
+        subprocess.run(["wpctl"] + args)
+
+    def get_volume_status(self, status):
+        return self.volume_status_cache.get(status)
+
+    def volume_status(self, args):
+        while args.command == "status":
+            print(self.symbol + str(self.get_volume_status("volume")) + "%")
+            time.sleep(60)
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="A simple script to help control the volume levels of the audio transmitted by your hardware device(s)!"
+    )
+    subparser = parser.add_subparsers(dest="command")
+
+    increase = subparser.add_parser("increase")
+    decrease = subparser.add_parser("decrease")
+    mute = subparser.add_parser("toggle-mute")
+    mute_window = subparser.add_parser("toggle-window-mute")
+
+    increase.add_argument(
+        "-l",
+        "--level",
+        type=int,
+        default=5,
+        help="Increase audio volume levels by +x%. (default: +%(default)%)",
+    )
+    decrease.add_argument(
+        "-l",
+        "--level",
+        type=int,
+        default=5,
+        help="Decrease audio volume levels by -x%. (default: -%(default)%)",
+    )
+
+    try:
+        args = parser.parse_args()
+        volctl = VolumeControl()
+        volctl.control_volume_level(args)
+    except KeyboardInterrupt:
+        print("Program has been terminated.")
+
+if __name__ == "__main__":
+    main()

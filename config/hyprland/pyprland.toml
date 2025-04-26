@@ -1,0 +1,57 @@
+[pyprland]
+plugins = [
+    "scratchpads",
+    "fetch_client_menu",
+]
+
+[scratchpads.template]
+lazy = true
+size = "95% 95%"
+margin = 25
+animation = "fromLeft"
+hide_delay = 0.0
+
+[scratchpads.System-Monitor]
+use = "template"
+command = "alacritty --class system-monitor -e btop"
+class = "system-monitor"
+
+[scratchpads.Emacs-NSP]
+use = "template"
+command = "emacs -T 'Emacs-NSP|'"
+title = "Emacs-NSP|"
+match_by = "title"
+
+[scratchpads.Emacs-Matrix]
+use = "template"
+command = "emacs -T 'Emacs-NSP: Matrix' --eval '(my/connect-to-matrix)'"
+title = "Emacs-NSP: Matrix"
+match_by = "title"
+
+[scratchpads.Emacs-Telega]
+use = "template"
+command = "emacs -T 'Emacs-NSP: Telega' --eval '(telega)'"
+title = "Emacs-NSP: Telega"
+match_by = "title"
+
+[scratchpads.Emacs-Mail]
+use = "template"
+command = "emacs -T 'Emacs-NSP: E-Mail' --eval '(mu4e)'"
+title = "Emacs-NSP|"
+match_by = "title"
+
+[scratchpads.SoundCTL]
+use = "template"
+command = "easyeffects"
+title = "Easy Effects"
+
+[scratchpads.Music]
+use = "template"
+command = "youtube-music"
+class = "YouTube Music"
+
+[scratchpads.Discord]
+use = "template"
+command = "vesktop"
+title = "re:.*Discord.*"
+match_by = "title"
