@@ -40,6 +40,7 @@ with lib;
         sqlite
         deno
         pandoc
+        vscode
       ];
     })
   ];
