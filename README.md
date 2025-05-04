@@ -1,6 +1,4 @@
-<p align="center">
-    <img src="./assets/main/png/chess.png" alt="Snowflake" width="400" height="400"/>
-</p>
+
 
 <p align="center">
     <a href="https://codeberg.org/Icy-Thought/snowflake/stars">
@@ -109,7 +107,7 @@ nix.extraOptions = ''
 ## 1. Cloning `Snowflake`
 
 ```sh
-git clone --depth 1 https://github.com/Icy-Thought/Snowflake.git
+git clone --depth 1 https://github.com/rudra-code-creator/Snowflake.git
 ```
 
 ## 2. Creating `hosts/deviceX` Directory
