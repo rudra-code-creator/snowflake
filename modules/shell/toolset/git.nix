@@ -101,8 +101,8 @@ with lib;
         credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
 
         user = {
-          name = "Icy-Thought";
-          email = "icy-thought@pm.me";
+          name = "Rudra Keshwani";
+          email = "rudrakeshwani2@gmail.com";
           signingKey = builtins.readFile "${config.user.home}/.ssh/id_ed25519.pub";
         };
 
