@@ -36,7 +36,7 @@ with lib;
       user.packages = with pkgs; [
         vulkan-tools
         dxvk
-        gnome.zenity
+        zenity
       ];
     })
   ];

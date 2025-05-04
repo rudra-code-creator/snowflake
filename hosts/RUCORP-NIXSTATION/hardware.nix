@@ -33,9 +33,19 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+  networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
+  networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # Recommended, define logical cores manually
+  # nix.settings.max-jobs = mkDefault 4;
+
+  hardware.cpu.intel.updateMicrocode = true;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
+
+  # Manage device power-control:
+  services = {
+    power-profiles-daemon.enable = true;
+    thermald.enable = true;
+  };
 }

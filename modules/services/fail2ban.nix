@@ -27,7 +27,7 @@ with lib;
         factor = "4";
       };
 
-      jails.DEFAULT = ''
+      jails.DEFAULT = lib.mkDefault ''
         blocktype = DROP
         bantime = 1h
         findtime = 1h
