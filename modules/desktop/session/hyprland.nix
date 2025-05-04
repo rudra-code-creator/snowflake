@@ -21,7 +21,7 @@ with lib;
     modules = {
       desktop = {
         session.type = "wayland";
-        terminal.program = "alacritty";
+        terminal.program = "ghostty";
         toolset.fileManager = {
           enable = true;
           program = "nautilus";

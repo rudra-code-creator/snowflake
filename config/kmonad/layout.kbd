@@ -1,0 +1,16 @@
+#| KMonad: Thinkpad E595
+   Tutorial: https://github.com/kmonad/kmonad/blob/master/keymap/tutorial.kbd
+|#
+
+;; (def) US-layout
+(defsrc
+	caps tab)
+
+;; (def) Our useful aliases!
+(defalias
+	tap-or-hold-caps-lock (tap-hold-next-release 150 esc M-lalt)
+	tap-hold-tab (tap-hold-next-release 150 tab C-M-lalt))
+
+(deflayer primary
+	@tap-or-hold-caps-lock
+	@tap-hold-tab)

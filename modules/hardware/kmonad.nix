@@ -35,7 +35,7 @@ with lib;
       {
         enable = true;
         keyboards.options = {
-          device = cfg.deviceID;
+          device = /dev/input/by-path/platform-i8042-serio-0-event-kbd;
           defcfg = {
             enable = true;
             fallthrough = true; # when keys /= assigned -> defsrc value

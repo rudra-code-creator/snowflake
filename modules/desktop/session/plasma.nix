@@ -16,7 +16,7 @@ with lib;
     {
       modules.desktop = {
         session.type = "wayland";
-        terminal.program = "alacritty";
+        terminal.program = "ghostty";
         extensions.input-method = {
           enable = true;
           framework = "fcitx5";

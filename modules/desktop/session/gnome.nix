@@ -15,10 +15,10 @@ with lib;
   config = mkIf config.modules.desktop.session.gnome.enable {
     modules.desktop = {
       session.type = "wayland";
-      terminal.program = "kitty";
+      terminal.program = "ghostty";
       extensions.input-method = {
         enable = true;
-        framework = "ibus";
+        framework = "fcitx";
       };
     };
 

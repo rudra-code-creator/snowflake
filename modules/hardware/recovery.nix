@@ -16,5 +16,5 @@ with lib;
     # TODO:
     # 1. disk recv. -> testdisk, ...
     # 2. auto-backup + btrfs snapshots or whatever
-  };
+  }; 
 }

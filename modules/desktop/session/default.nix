@@ -26,10 +26,10 @@ with lib;
             || !(my.anyAttrs (_: v: builtins.isAttrs v && my.anyAttrs isEnabled v) cfg);
         in
         [
-          {
-            assertion = (my.countAttrs (_: v: v.enable or false) cfg) < 2;
-            message = "Can't have more than one desktop environment enabled at a time";
-          }
+          # {
+          #   assertion = (my.countAttrs (_: v: v.enable or false) cfg) < 2;
+          #   message = "Can't have more than one desktop environment enabled at a time";
+          # }
           {
             assertion = hasDesktopSessionEnabled cfg;
             message = "Can't enable a desktop sub-module without a desktop environment";

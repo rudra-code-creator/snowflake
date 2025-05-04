@@ -17,6 +17,7 @@ with lib;
     modules = {
       desktop = {
         session.type = "x11";
+        # GHOSTTY
         terminal.program = "ghostty";
         toolset.fileManager = {
           enable = true;

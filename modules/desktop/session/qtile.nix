@@ -28,7 +28,7 @@ with lib;
       modules = {
         desktop = {
           session.type = cfg.backend;
-          terminal.program = "alacritty";
+          terminal.program = "ghostty";
           toolset.fileManager = {
             enable = true;
             program = "nautilus";
