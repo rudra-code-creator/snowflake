@@ -12,6 +12,8 @@ with lib;
     enable = mkEnableOption "Google-free chromium";
   };
 
+  # hello world
+
   config = mkIf config.modules.desktop.browsers.chromium.enable {
     user.packages = [
       (pkgs.makeDesktopItem {
