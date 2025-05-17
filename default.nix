@@ -92,6 +92,7 @@ with lib;
       cached-nix-shell
       unrar
       unzip
+      lolcat
     ];
   };
 }

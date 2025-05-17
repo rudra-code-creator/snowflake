@@ -34,9 +34,11 @@
       networkManager.enable = true;
     };
 
+    base.enable = true;
+
     # Finally, our beloved hardware module(s):
     hardware = {
-      plymouth.enable = true;
+      # plymouth.enable = true;
       pipewire.enable = true;
       bluetooth.enable = true;
       pointer.enable = true;
