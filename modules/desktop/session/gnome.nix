@@ -141,5 +141,22 @@ with lib;
         # };
       };
     }];
+
+    # The calculator app tries to pull various values for currency conversions, etc that I don't need.  Just block everything
+    services.opensnitch.rules = {
+      rule-500-gnome-calc = {
+        name = "Block calculator from any network access";
+        enabled = true;
+        action = "deny";
+        duration = "always";
+        operator =
+          {
+            type = "simple";
+            sensitive = false;
+            operand = "process.path";
+            data = "${lib.getBin pkgs.gnome-calculator}/bin/.gnome-calculator-wrapped";
+          };
+      };
+    };
   };
 }

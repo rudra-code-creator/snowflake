@@ -20,7 +20,7 @@ with lib;
         nixfmt-rfc-style
         nixd
         manix
-        nix-index
+        # nix-index # Provided in flake
         nix-init
         nix-output-monitor
         nix-tree

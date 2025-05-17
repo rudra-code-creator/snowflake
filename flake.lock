@@ -370,6 +370,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1746934494,
+        "narHash": "sha256-3n6i+F0sDASjkhbvgFDpPDZGp7z19IrRtjfF9TwJpCA=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "e9b21b01e4307176b9718a29ac514838e7f6f4ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1744932701,
@@ -641,6 +661,7 @@
         "emacs-dir": "emacs-dir",
         "home-manager": "home-manager",
         "kmonad": "kmonad",
+        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_2",
         "nvim-dir": "nvim-dir",
         "pyprland": "pyprland",

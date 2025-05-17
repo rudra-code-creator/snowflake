@@ -14,5 +14,6 @@ with lib;
 
   config = mkIf config.modules.services.rustdesk.enable {
     user.packages = [ pkgs.rustdesk ];
+    environment.systemPackages = with pkgs; [ comma ];
   };
 }
