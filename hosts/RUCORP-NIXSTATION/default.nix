@@ -51,6 +51,7 @@
       lisp.guile.enable = true;
       python.enable = true;
       rust.enable = true;
+      jetbrains.enable = true;
       markup = {
         language.enable = true;
         LaTeX.enable = true;

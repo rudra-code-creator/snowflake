@@ -68,7 +68,7 @@ with lib;
 
   config = mkIf config.modules.base.enable {
     # BASE miscellaneous config
-    user.packages = with pkgs; [ kicad gnome-extension-manager waynergy];
+    user.packages = with pkgs; [ flightgear kicad gnome-extension-manager waynergy fdroidserver fdroidcl libreoffice-qt6-fresh ];
     environment.systemPackages = [ managed-firefox ];
 
     services.opensnitch.rules = {
