@@ -68,7 +68,31 @@ with lib;
 
   config = mkIf config.modules.base.enable {
     # BASE miscellaneous config
-    user.packages = with pkgs; [ flightgear kicad gnome-extension-manager waynergy fdroidserver fdroidcl libreoffice-qt6-fresh ];
+    user.packages = with pkgs; [ 
+      pipeline 
+      switcheroo 
+      switcheroo-control 
+      flightgear 
+      kicad 
+      gnome-extension-manager 
+      waynergy 
+      fdroidserver 
+      fdroidcl 
+      libreoffice-qt6-fresh 
+      converseen
+      resources
+      mcontrolcenter # Tool to change the settings of MSI laptops running Linux
+      gnome-control-center
+      mission-center
+      lact
+      gearlever
+      geary
+      clever-tools
+      toolbox
+      #steamos-devkit
+      devtoolbox
+      clapgrep
+    ];
     environment.systemPackages = [ managed-firefox ];
 
     services.opensnitch.rules = {
